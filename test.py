@@ -1,6 +1,6 @@
 import pyautogui
+from time import sleep
 
-times = 10
-
-for i in range(times):
-    pyautogui.click(x = 211, y = 433, duration=2)
+sleep(3)
+image = pyautogui.screenshot(region = (0, 100, 120, 59))
+image.save('game_screenshot/game.png')
