@@ -5,6 +5,6 @@ try:
     while True:
         x, y = pyautogui.position()
         print(x, y, flush=True)
-        sleep(1)
+        sleep(0.5)
 except KeyboardInterrupt:
     print('\n')
