@@ -1,6 +1,9 @@
-import pyautogui
-from time import sleep
+import os
+import cv2 as cv
 
-sleep(3)
-image = pyautogui.screenshot(region = (0, 100, 120, 59))
-image.save('game_screenshot/game.png')
+# linux -> google-chrome "[website]"
+# window -> start chrome "[website]"
+# os.system('google-chrome https://www.google.com/fbx?fbx=minesweeper') 
+img = cv.imread('images/easy_tag.png')
+img2 = cv.imread('game_screenshot/game.png')
+
