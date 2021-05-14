@@ -5,6 +5,7 @@ class AI():
         self.board = board
         self.finished = False
         self.possible_moves = []
+        self.must_bombs = []
 
     # getters
     def get_finished(self):
@@ -12,6 +13,9 @@ class AI():
 
     def get_possible_moves(self):
         return self.possible_moves
+
+    def get_must_bombs(self):
+        return self.must_bombs
     
     # setters
     def set_finished(self, value):
@@ -22,6 +26,12 @@ class AI():
     
     def clear_possible_moves(self):
         self.possible_moves.clear()
+
+    def append_must_bombs(self, value):
+        self.must_bombs.append(value)
+    
+    def clear_must_bombs(self):
+        self.must_bombs.clear()
 
     # methods    
     def play(self):
