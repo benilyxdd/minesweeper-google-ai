@@ -1,5 +1,6 @@
 class Piece():
-    def __init__(self, has_bomb):
-        self.has_bomb = has_bomb
-        self.flagged = False
+    def __init__(self):
         self.clicked = False
+        self.has_bomb = None
+        self.flagged = False
+        self.bomb_near = None
