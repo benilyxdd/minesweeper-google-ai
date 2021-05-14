@@ -1,4 +1,4 @@
-from board import Board
+import pyautogui
 
 class AI():
     def __init__(self, board):
@@ -17,10 +17,10 @@ class AI():
             
     def start_game(self):
         # click on (board[0][0]) to start the game
-        pass
+        self.click_event(self.board.board_position[0][0])
 
     def game_finish(self): 
-        for row in self.board:
+        for row in self.board.board:
             for col in row:
                 if (not col[0].clicked) and (not col[0].flagged): # check the piece is clicked or flagged
                     return False
@@ -28,3 +28,6 @@ class AI():
 
     def has_possible_moves(self):
         return self.possible_moves # whether the array has element
+
+    def click_event(self, board_position):
+        pyautogui.click(board_position[0], board_position[1])

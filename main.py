@@ -5,7 +5,7 @@ from board import Board
 from ai import AI
 
 # let user switch to the page
-sleep(3)
+sleep(2)
 
 # screenshot to get the difficutly from the game
 diff = Difficulty().get_diff()
@@ -17,4 +17,4 @@ bombs_number = {'hard': 99, 'medium': 40, 'easy': 10}
 starting_position = (0, 160)
 
 board = Board(board_size[diff], piece_length[diff], bombs_number[diff])
-# AI(board.board).play()
+# AI(board).play()
