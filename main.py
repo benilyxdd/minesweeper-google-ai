@@ -18,3 +18,4 @@ starting_position = (0, 160)
 
 board = Board(board_size[diff], piece_length[diff], bombs_number[diff])
 # AI(board).play()
+AI(board).start_game()

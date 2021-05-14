@@ -9,20 +9,39 @@ class Board():
         self.board_position = []
         self.set_board()
 
+    # getters
+    def get_board_size(self):
+        return self.board_size
+    
+    def get_piece_length(self):
+        return self.piece_length
+    
+    def get_bomb_left(self):
+        return self.bomb_left
+    
+    def get_board(self):
+        return self.board
+
+    def get_board_position(self):
+        return self.board_position
+
+    # setters
+
+    # methods
     def set_board(self):
-        piece_position = [0 + self.piece_length / 2, 160 + self.piece_length / 2] # first piece postion
-        for row in range(self.board_size[0]):
+        piece_position = [0 + self.get_piece_length() / 2, 160 + self.get_piece_length() / 2] # first piece postion
+        for row in range(self.get_board_size()[0]):
             row = []
             row_position = []
             
-            for col in range(self.board_size[1]):
+            for col in range(self.get_board_size()[1]):
                 row.append(Piece())
                 row_position.append((round(piece_position[0]), round(piece_position[1])))
 
-                piece_position[1] += self.piece_length # next col piece position
+                piece_position[1] += self.get_piece_length() # next col piece position
             
             self.board.append(row)
             self.board_position.append(row_position)
 
-            piece_position[0] += self.piece_length #next row piece position
-            piece_position[1] = 160 + self.piece_length
+            piece_position[0] += self.get_piece_length() #next row piece position
+            piece_position[1] = 160 + self.get_piece_length()
