@@ -26,6 +26,14 @@ class Board():
         return self.board_position
 
     # setters
+    def append_board(self, value):
+        self.board.append(value)
+    
+    def append_board_position(self, value):
+        self.board_position.append(value)
+    
+    def miuns_bomb_left(self, value):
+        self.bomb_left -= value;
 
     # methods
     def set_board(self):
@@ -40,8 +48,8 @@ class Board():
 
                 piece_position[1] += self.get_piece_length() # next col piece position
             
-            self.board.append(row)
-            self.board_position.append(row_position)
+            self.append_board(row)
+            self.append_board_position(row_position)
 
             piece_position[0] += self.get_piece_length() #next row piece position
             piece_position[1] = 160 + self.get_piece_length()

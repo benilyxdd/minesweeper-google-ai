@@ -10,11 +10,11 @@ sleep(2)
 # screenshot to get the difficutly from the game
 diff = Difficulty().get_diff()
 
-width, height = 1440, 900 # changable
+# width, height = 1440, 900 # changable
 board_size = {'hard' : (20, 24), 'medium' : (14, 18), 'easy' : (8, 10)}
 piece_length = {'hard' : 24, 'medium' : 28, 'easy' : 45}
 bombs_number = {'hard': 99, 'medium': 40, 'easy': 10}
-starting_position = (0, 160)
+# starting_position = (0, 160)
 
 board = Board(board_size[diff], piece_length[diff], bombs_number[diff])
 # AI(board).play()
