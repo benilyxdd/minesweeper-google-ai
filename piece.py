@@ -3,7 +3,8 @@ class Piece():
         self.clicked = False
         self.has_bomb = None
         self.flagged = False
-        self.bomb_near = None # how many bomb near the piece
+        self.bomb_near = 0 # how many bomb near the piece for now
+        self.bomb_number = None # what is the number show in game
     
     # getters
     def get_clicked(self):
@@ -18,6 +19,9 @@ class Piece():
     def get_bomb_near(self):
         return self.bomb_near
 
+    def get_bomb_number(self):
+        return self.bomb_number
+
     # setters
     def set_clicked(self, value):
         self.clicked = value
@@ -30,3 +34,6 @@ class Piece():
 
     def set_bomb_near(self, value):
         self.bomb_near = value
+
+    def set_bomb_number(self, value):
+        self.bomb_number = value
