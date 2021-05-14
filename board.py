@@ -1,10 +1,11 @@
 from piece import Piece
 
 class Board():
-    def __init__(self, board_size, piece_length, bomb_left):
+    def __init__(self, board_size, piece_length, bomb_left, starting_position):
         self.board_size = board_size
         self.piece_length = piece_length
         self.bomb_left = bomb_left
+        self.starting_position = starting_position
         self.board = []
         self.board_position = []
         self.set_board()
@@ -19,6 +20,9 @@ class Board():
     def get_bomb_left(self):
         return self.bomb_left
     
+    def get_starting_position(self):
+        return self.starting_position  
+
     def get_board(self):
         return self.board
 
@@ -33,11 +37,14 @@ class Board():
         self.board_position.append(value)
     
     def miuns_bomb_left(self, value):
-        self.bomb_left -= value;
+        self.bomb_left -= value
 
     # methods
     def set_board(self):
-        piece_position = [0 + self.get_piece_length() / 2, 160 + self.get_piece_length() / 2] # first piece postion
+        piece_position = [ # first piece postion
+            self.get_starting_position()[0] + self.get_piece_length() / 2, 
+            self.get_starting_position()[1] + self.get_piece_length() / 2
+        ]
         for row in range(self.get_board_size()[0]):
             row = []
             row_position = []
