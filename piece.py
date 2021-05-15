@@ -4,9 +4,9 @@ class Piece():
         self.piece_length = piece_length
         self.starting_position = starting_position
         self.clicked = False
-        self.has_bomb = None
+        self.has_bomb = False
         self.flagged = False
-        self.bomb_near = 0 # how many bomb near the piece for now
+        self.bomb_near = 0 # how many bomb near the piece for now (bomb can see from the current map)
         self.bomb_number = None # what is the number show in game
     
     # getters
@@ -57,6 +57,9 @@ class Piece():
 
     # methods
     def search_piece(self, image):
+        if self.get_flagged() or self.get_clicked():
+            return
+
         check_length = round(self.get_piece_length() / 8)
         search_array_x = [-check_length, check_length, 0, 0,
                 -check_length, -check_length, check_length, check_length, 0
@@ -68,10 +71,10 @@ class Piece():
             r, g, b = image.getpixel((self.get_piece_center_position()[0] + search_array_x[check],
                                     self.get_piece_center_position()[1] + search_array_y[check]))
             if (self.check_piece_number((r, g, b))):
-                print(self.get_bomb_number(), self.get_piece_position())
+                # print(self.get_bomb_number(), self.get_piece_position())
                 return
         self.check_clicked(image.getpixel((self.get_piece_center_position()[0],
-                                    self.get_piece_center_position()[1])))
+                                        self.get_piece_center_position()[1])))
 
     # rgb(165, 211, 76) covered - dark - ok
     # rgb(172, 217, 84) covered - light - ok    
@@ -115,3 +118,6 @@ class Piece():
         self.set_has_bomb(False)
         self.set_bomb_number(value)
 
+    def set_bomb(self):
+        self.set_bomb(True)
+        self.set_flagged(True)

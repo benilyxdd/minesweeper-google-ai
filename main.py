@@ -20,4 +20,5 @@ board = Board(board_size[diff], piece_length[diff], bombs_number[diff], starting
 # AI(board).play()
 # AI(board).start_game()
 AI(board).scan_board()
+AI(board).flag_all_must_bomb()
 # AI(board).get_certain_pixel()
