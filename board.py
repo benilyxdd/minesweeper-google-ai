@@ -67,34 +67,29 @@ class Board():
                     if x > -1 and x < row and y > -1 and y < col:
                         covered_and_flagged_count += (not self.get_board()[x][y].get_clicked() or 
                                                     self.get_board()[x][y].get_flagged())
-                        if (not self.get_board()[x][y].get_clicked()):
+                        if (not self.get_board()[x][y].get_clicked() and not self.get_board()[x][y].get_flagged()):
                             possible_bomb_position.add((x, y))
                 if covered_and_flagged_count == self.get_board()[row_piece][piece].get_bomb_number():
-                    must_bomb_position |= possible_bomb_position
-                possible_bomb_position.clear()
+                    must_bomb_position.update(possible_bomb_position)
         return must_bomb_position
 
-    # test
-    def find_neighbour(self):
+    def find_possible_moves(self):
         search_array_x = [-1, 1, 0, 0, -1, -1, 1, 1]
         search_array_y = [0, 0, 1, -1, -1, 1, -1, 1]
-        possible_click = []
+        possible_click = set([])
         row, col = self.get_board_size()
         for row_piece in range(row):
             for piece in range(col):
-                visible_bomb_count = 0
+                bomb_near = 0
+                possible_moves_position = set([])
                 for search in range(8):
                     x = row_piece + search_array_x[search]
-                    y = row + search_array_y[search]
+                    y = piece + search_array_y[search]
                     if x > -1 and x < row and y > -1 and y < col:
-                        visible_bomb_count += (self.get_board()[x][y].get_has_bomb())
-                        print(self.get_board()[x][y].get_has_bomb())
-                if self.get_board()[row_piece][row].get_bomb_number == visible_bomb_count:
-                    for search in range(8):
-                        x = row_piece + search_array_x[search]
-                        y = row + search_array_y[search]
-                        if x > -1 and x < row and y > -1 and y < col:
-                            if (self.get_board()[x][y].get_clicked() == False):
-                                possible_click.append((x, y))
-                print(visible_bomb_count)
+                        bomb_near += (self.get_board()[x][y].get_flagged())
+                        if (not self.get_board()[x][y].get_clicked() and 
+                            not self.get_board()[x][y].get_flagged()):
+                            possible_moves_position.add((x, y))
+                if bomb_near == self.get_board()[row_piece][piece].get_bomb_number():
+                    possible_click.update(possible_moves_position)
         return possible_click

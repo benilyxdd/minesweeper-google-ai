@@ -26,14 +26,14 @@ class AI():
     def set_finished(self, value):
         self.finished = value
 
-    def append_possible_moves(self, value):
-        self.possible_moves.append(value)
+    def extend_possible_moves(self, value):
+        self.possible_moves.extend(value)
     
     def clear_possible_moves(self):
         self.possible_moves.clear()
 
-    def append_must_bombs(self, value):
-        self.must_bombs.append(value)
+    def extend_must_bombs(self, value):
+        self.must_bombs.extend(value)
     
     def clear_must_bombs(self):
         self.must_bombs.clear()
@@ -41,19 +41,25 @@ class AI():
     # methods    
     def play(self):
         self.start_game()
+        self.find_all()
         self.process()
         
-        while not self.game_finish(): 
-            if (not self.has_possible_moves()):
-                print("The game cannot be finished!")
+        while not self.game_finish() and not self.get_finished(): 
+            time.sleep(1)
+            self.find_all()
+            if (not self.has_possible_moves() and not self.get_finished()):
+                print("That's all my power")
                 self.set_finished(True) # the game cannot be finished
+                return
             else:
                 self.process()
     
-    def process(self):
+    def find_all(self):
         self.scan_board()
-        self.flag_all_must_bomb()
         self.find_possible_moves()
+
+    def process(self):
+        self.flag_all_must_bomb()
         self.click_all_possible_moves()
             
     def start_game(self):
@@ -62,11 +68,12 @@ class AI():
             [round(self.get_board().get_board_size()[0] / 2 - 1)]
             [round(self.get_board().get_board_size()[1] / 2 - 1)].get_real_piece_position(), 'left'
         )
+        time.sleep(2)
 
     def game_finish(self): 
         for row in self.get_board().get_board():
             for col in row:
-                if (not col[0].get_clicked()) and (not col[0].get_flagged()): # check the piece is clicked or flagged
+                if (not col.get_clicked()) and (not col.get_flagged()): # check the piece is clicked or flagged
                     return False
         return True
 
@@ -84,18 +91,20 @@ class AI():
                 col.search_piece(image)
 
     def find_possible_moves(self):
-        pass
+        self.extend_possible_moves(self.get_board().find_possible_moves())
+        # print(self.get_possible_moves())
 
     def click_all_possible_moves(self):
-        for position in self.possible_moves:
-            self.click_event(position, 'left')
+        for x, y in self.possible_moves:
+            self.click_event(self.get_board().get_board()[x][y].get_real_piece_position(), 'left')
         self.clear_possible_moves()
 
     def flag_all_must_bomb(self):
-        self.must_bombs.extend(self.get_board().find_bomb())
+        self.extend_must_bombs(self.get_board().find_bomb())
         for x, y in self.get_must_bombs():
-            self.get_board().get_board()[x][y].set_flagged(True)
+            self.get_board().get_board()[x][y].set_bomb()
             self.click_event(self.get_board().get_board()[x][y].get_real_piece_position(), 'right')
+        self.clear_must_bombs()
 
     def screenshot_game(self):
         board_size = self.get_board().get_board_size()
@@ -114,4 +123,4 @@ class AI():
 
     def get_certain_pixel(self):
         image = self.screenshot_game()
-        self.get_board().get_board()[6][6].configure_piece(image)
+        self.get_board().get_board()[9][9].search_piece(image)

@@ -17,8 +17,10 @@ bombs_number = {'hard': 99, 'medium': 40, 'easy': 10}
 starting_position = (0, 160)
 
 board = Board(board_size[diff], piece_length[diff], bombs_number[diff], starting_position)
-# AI(board).play()
+AI(board).play()
 # AI(board).start_game()
-AI(board).scan_board()
-AI(board).flag_all_must_bomb()
+# AI(board).process()
+# AI(board).scan_board()
+# AI(board).flag_all_must_bomb()
+# AI(board).find_possible_moves()
 # AI(board).get_certain_pixel()

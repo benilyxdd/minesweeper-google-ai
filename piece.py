@@ -119,5 +119,5 @@ class Piece():
         self.set_bomb_number(value)
 
     def set_bomb(self):
-        self.set_bomb(True)
+        self.set_has_bomb(True)
         self.set_flagged(True)
