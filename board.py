@@ -42,10 +42,9 @@ class Board():
 
     # methods
     def set_board(self):
-        ceil = False    
         piece_position = [ # first piece postion
-            self.get_starting_position()[0] + self.get_piece_length() / 2, 
-            self.get_starting_position()[1] + self.get_piece_length() / 2
+            self.get_starting_position()[0],
+            self.get_starting_position()[1]
         ]
         for row in range(self.get_board_size()[0]):
             row = []
@@ -53,22 +52,12 @@ class Board():
             
             for col in range(self.get_board_size()[1]):
                 row.append(Piece())
-                if (ceil):
-                    row_position.append((math.ceil(piece_position[0]), math.ceil(piece_position[1])))
-                    ceil = False
-                else:
-                    row_position.append((math.floor(piece_position[0]), math.floor(piece_position[1])))
-                    ceil = True
 
-                piece_position[0] += self.get_piece_length() # next col piece position
+                row_position.append((piece_position[0], piece_position[1]))
+                piece_position[0] += self.get_piece_length() # next col position
             
             self.append_board(row)
-            self.append_board_position(row_position)
 
-            piece_position[1] += self.get_piece_length() #next row piece position
-            if ceil:
-                piece_position[0] = self.get_starting_position()[0] + math.ceil(self.get_piece_length() / 2)
-                ceil = False
-            else:
-                piece_position[0] = self.get_starting_position()[0] + math.floor(self.get_piece_length() / 2)
-                ceil = True
+            self.append_board_position(row_position)
+            piece_position[1] += self.get_piece_length() #next row position
+            piece_position[0] = self.get_starting_position()[0] # reset col position

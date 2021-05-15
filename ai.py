@@ -51,9 +51,6 @@ class AI():
             
     def start_game(self):
         # click on the middle to start the game
-        print(self.board.get_board_position()
-            [round(self.board.get_board_size()[0] / 2 - 1)]
-            [round(self.board.get_board_size()[1] / 2 - 1)])
         self.click_event(self.board.get_board_position()
             [round(self.board.get_board_size()[0] / 2 - 1)]
             [round(self.board.get_board_size()[1] / 2 - 1)]
@@ -72,10 +69,10 @@ class AI():
     def click_event(self, board_position):
         pyautogui.click(board_position[0], board_position[1])
 
-    def find_possible_moves(self):
+    def scan_board(self):
         pass
 
-    def scan_board(self):
+    def find_possible_moves(self):
         pass
 
     def click_all_possible_moves(self):
@@ -90,5 +87,7 @@ class AI():
     def click_all(self):
         for row in self.board.get_board_position():
             for col in row:
-                self.click_event(col)
-                print(col)
+                self.click_event((
+                    col[0] + self.board.get_piece_length() / 2,
+                    col[1] + self.board.get_piece_length() / 2
+                ))
