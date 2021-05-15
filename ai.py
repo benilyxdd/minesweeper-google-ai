@@ -1,4 +1,5 @@
 import pyautogui
+import time
 
 class AI():
     def __init__(self, board):
@@ -49,8 +50,14 @@ class AI():
                 self.flag_all_possible_bomb()
             
     def start_game(self):
-        # click on (board[0][0]) to start the game
-        self.click_event(self.board.get_board_position()[0][0])
+        # click on the middle to start the game
+        print(self.board.get_board_position()
+            [round(self.board.get_board_size()[0] / 2 - 1)]
+            [round(self.board.get_board_size()[1] / 2 - 1)])
+        self.click_event(self.board.get_board_position()
+            [round(self.board.get_board_size()[0] / 2 - 1)]
+            [round(self.board.get_board_size()[1] / 2 - 1)]
+        )
 
     def game_finish(self): 
         for row in self.board.get_board():
@@ -71,9 +78,6 @@ class AI():
     def scan_board(self):
         pass
 
-    def find_possible_moves(self):
-        pass
-
     def click_all_possible_moves(self):
         for position in self.possible_moves:
             self.click_event(position)
@@ -81,3 +85,10 @@ class AI():
 
     def flag_all_possible_bomb(self):
         pass
+
+    #test
+    def click_all(self):
+        for row in self.board.get_board_position():
+            for col in row:
+                self.click_event(col)
+                print(col)
