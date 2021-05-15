@@ -41,14 +41,11 @@ class Board():
 
     # methods
     def set_board(self):
-        piece_position = [ # first piece postion
-            self.get_starting_position()[0],
-            self.get_starting_position()[1]
-        ]
+        piece_position = [0, 0]
         for row in range(self.get_board_size()[0]):
             row = []
             for col in range(self.get_board_size()[1]):
-                row.append(Piece((piece_position[0], piece_position[1]), self.piece_length))
+                row.append(Piece((piece_position[0], piece_position[1]), self.piece_length, self.starting_position))
                 piece_position[0] += self.get_piece_length() # next col position
             
             self.append_board(row)
