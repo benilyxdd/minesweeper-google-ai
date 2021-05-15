@@ -72,11 +72,7 @@ class AI():
                         board_position[1] + self.board.get_piece_length() / 2)
 
     def scan_board(self):
-        board_size = self.board.get_board_size()
-        piece_length = self.board.get_piece_length()
-        # region = (0, 100, board_size[1] * piece_length, board_size[0] * piece_length + 60) for whole game
-        image = pyautogui.screenshot(region = (0, 160,
-                                     board_size[1] * piece_length, board_size[0] * piece_length))
+        image = self.screenshot_game()
         for row in self.board.get_board():
             for col in row:
                 col.configure_piece(image)
@@ -92,12 +88,6 @@ class AI():
     def flag_all_possible_bomb(self):
         pass
 
-    #test
-    def click_all(self):
-        for row in self.board.get_board():
-            for col in row:
-                self.click_event(col.get_real_piece_position())
-
     def screenshot_game(self):
         board_size = self.board.get_board_size()
         piece_length = self.board.get_piece_length()
@@ -105,3 +95,14 @@ class AI():
         image = pyautogui.screenshot(region = (0, 160,
                                      board_size[1] * piece_length, board_size[0] * piece_length))
         image.save('game_screenshot/game.png')
+        return image
+
+    #test
+    def click_all(self):
+        for row in self.board.get_board():
+            for col in row:
+                self.click_event(col.get_real_piece_position())
+
+    def get_certain_pixel(self):
+        image = self.screenshot_game()
+        self.board.get_board()[6][6].configure_piece(image)

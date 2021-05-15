@@ -57,15 +57,24 @@ class Piece():
 
     # methods
     def configure_piece(self, image):
-        # rgb(44, 115, 208) 1 (blue)
-        # rgb(122, 166, 104) 2 (green)
-        # rgb(205, 44, 54) 3 (red)
-        # rgb(121, 18, 161) 4 (purple)
-        # rgb(249, 144, 33) 5 (orange)
-        # rgb(59, 155, 162) 6 (cyan)
-        # rgb(213, 184, 154) 0 - dark
-        # rgb(227, 195, 160) 0 - light
-        # rgb(187, 223, 121) covered - dark
-        # rgb(193, 227, 127) covered - light
-        r, g, b = image.getpixel(self.get_piece_center_position())
-        print(r, g, b)
+        check_length = round(self.get_piece_length() / 8)
+        search_array_x = [-check_length, check_length, 0, 0,
+                -check_length, -check_length, check_length, check_length, 0
+        ]
+        search_array_y = [0, 0, check_length, -check_length,
+                -check_length, check_length, -check_length, check_length, 0
+        ]
+        # rgb(44, 115, 208) 1 (blue) - ok
+        # rgb(65, 144, 61) 2 (green) - ok
+        # rgb(205, 44, 54) 3 (red) - ok
+        # rgb(120, 14, 161) 4 (purple) - ok
+        # rgb(249, 144, 33) 5 (orange) - ok
+        # rgb(59, 155, 162) 6 (cyan) - cannot find :(
+        # rgb(213, 184, 154) 0 - dark - ok
+        # rgb(227, 195, 160) 0 - light - ok
+        # rgb(165, 211, 76) covered - dark - ok
+        # rgb(172, 217, 84) covered - light - ok
+        for check in range(9):
+            r, g, b = image.getpixel((self.get_piece_center_position()[0] - search_array_x[check],
+                                    self.get_piece_center_position()[1] - search_array_y[check]))
+            print(r, g, b)
