@@ -48,4 +48,14 @@ class Piece():
 
     # methods
     def scan_piece(self):
+        # rgb(44, 115, 208) 1 (blue)
+        # rgb(122, 166, 104) 2 (green)
+        # rgb(205, 44, 54) 3 (red)
+        # rgb(121, 18, 161) 4 (purple)
+        # rgb(249, 144, 33) 5 (orange)
+        # rgb(59, 155, 162) 6 (cyan)
+        # rgb(213, 184, 154) 0 - dark
+        # rgb(227, 195, 160) 0 - light
+        # rgb(187, 223, 121) covered - dark
+        # rgb(193, 227, 127) covered - light
         pass
