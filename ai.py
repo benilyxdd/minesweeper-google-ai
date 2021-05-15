@@ -89,6 +89,14 @@ class AI():
     def flag_all_possible_bomb(self):
         pass
 
+    def screenshot_game(self):
+        board_size = self.board.get_board_size()
+        piece_length = self.board.get_piece_length()
+        # region = (0, 100, board_size[1] * piece_length, board_size[0] * piece_length + 60) for whole game
+        image = pyautogui.screenshot(region = (0, 160,
+                                     board_size[1] * piece_length, board_size[0] * piece_length))
+        image.save('game_screenshot/game.png')
+
     #test
     def click_all(self):
         for row in self.board.get_board():
