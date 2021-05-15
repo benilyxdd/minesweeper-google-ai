@@ -1,3 +1,4 @@
+from PIL.ImageOps import grayscale
 import pyautogui
 import time
 
@@ -71,12 +72,13 @@ class AI():
                         board_position[1] + self.board.get_piece_length() / 2)
 
     def scan_board(self):
-        for row in range(self.board.get_board_size()[0]):
-            for col in range(self.board.get_board_size()[1]):
-                print((self.board.get_board()[row][col].get_piece_position[0],
-                       self.board.get_board()[row][col].get_piece_positionn[1],
-                       self.board.get_piece_length(),
-                       self.board.get_piece_length()))
+        self.screenshot_game()
+        # for image in 'images/clicked':
+        #     lst = pyautogui.locateAll(image, 'game_screenshot/game.png', grayscale = True)
+        #     print(list(lst))
+        lst = pyautogui.locateAll('images/clicked/2_dark.png', 'game_screenshot/game.png', grayscale = False)
+        for all in list(lst):
+            print(all)
 
     def find_possible_moves(self):
         pass
