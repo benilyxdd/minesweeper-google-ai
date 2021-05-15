@@ -8,7 +8,6 @@ class Board():
         self.bomb_left = bomb_left
         self.starting_position = starting_position
         self.board = []
-        self.board_position = []
         self.set_board()
 
     # getters
@@ -48,16 +47,10 @@ class Board():
         ]
         for row in range(self.get_board_size()[0]):
             row = []
-            row_position = []
-            
             for col in range(self.get_board_size()[1]):
-                row.append(Piece())
-
-                row_position.append((piece_position[0], piece_position[1]))
+                row.append(Piece((piece_position[0], piece_position[1]), self.piece_length))
                 piece_position[0] += self.get_piece_length() # next col position
             
             self.append_board(row)
-
-            self.append_board_position(row_position)
             piece_position[1] += self.get_piece_length() #next row position
             piece_position[0] = self.get_starting_position()[0] # reset col position

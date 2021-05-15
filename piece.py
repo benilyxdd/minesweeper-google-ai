@@ -1,5 +1,7 @@
 class Piece():
-    def __init__(self):
+    def __init__(self, piece_position, piece_length):
+        self.piece_position = piece_position
+        self.piece_length = piece_length
         self.clicked = False
         self.has_bomb = None
         self.flagged = False
@@ -7,6 +9,12 @@ class Piece():
         self.bomb_number = None # what is the number show in game
     
     # getters
+    def get_piece_position(self):
+        return self.piece_position
+
+    def get_piece_length(self):
+        return self.piece_length
+
     def get_clicked(self):
         return self.clicked
 
@@ -37,3 +45,6 @@ class Piece():
 
     def set_bomb_number(self, value):
         self.bomb_number = value
+
+    # methods
+    

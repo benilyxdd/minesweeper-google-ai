@@ -51,9 +51,9 @@ class AI():
             
     def start_game(self):
         # click on the middle to start the game
-        self.click_event(self.board.get_board_position()
+        self.click_event(self.board.get_board()
             [round(self.board.get_board_size()[0] / 2 - 1)]
-            [round(self.board.get_board_size()[1] / 2 - 1)]
+            [round(self.board.get_board_size()[1] / 2 - 1)].get_piece_position()
         )
 
     def game_finish(self): 
@@ -67,10 +67,16 @@ class AI():
         return self.get_possible_moves() # whether the array has element
 
     def click_event(self, board_position):
-        pyautogui.click(board_position[0], board_position[1])
+        pyautogui.click(board_position[0] + self.board.get_piece_length() / 2,
+                        board_position[1] + self.board.get_piece_length() / 2)
 
     def scan_board(self):
-        pass
+        for row in range(self.board.get_board_size()[0]):
+            for col in range(self.board.get_board_size()[1]):
+                print((self.board.get_board()[row][col].get_piece_position[0],
+                       self.board.get_board()[row][col].get_piece_positionn[1],
+                       self.board.get_piece_length(),
+                       self.board.get_piece_length()))
 
     def find_possible_moves(self):
         pass
@@ -85,9 +91,6 @@ class AI():
 
     #test
     def click_all(self):
-        for row in self.board.get_board_position():
+        for row in self.board.get_board():
             for col in row:
-                self.click_event((
-                    col[0] + self.board.get_piece_length() / 2,
-                    col[1] + self.board.get_piece_length() / 2
-                ))
+                self.click_event(col.get_piece_position())
