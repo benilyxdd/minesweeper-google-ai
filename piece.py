@@ -67,25 +67,51 @@ class Piece():
         for check in range(9):
             r, g, b = image.getpixel((self.get_piece_center_position()[0] + search_array_x[check],
                                     self.get_piece_center_position()[1] + search_array_y[check]))
-            print(r, g, b)
-    
-    def configure_piece(self, rgb):
-        number = {
-            (44, 115, 208): 1,
-            (65, 144, 61): 2,
-            (205, 44, 54): 3,
-            (120, 14, 161): 4,
-            (249, 144, 33): 5,
-            (59, 155, 162): 6
-        }
+            if (self.check_piece_number((r, g, b))):
+                print(self.get_bomb_number(), self.get_piece_position())
+                return
+        self.check_clicked(image.getpixel((self.get_piece_center_position()[0],
+                                    self.get_piece_center_position()[1])))
+
+    # rgb(165, 211, 76) covered - dark - ok
+    # rgb(172, 217, 84) covered - light - ok    
+    # check is it clicked
+    def check_clicked(self, rgb):
+        # rgb(213, 184, 154) 0 - dark - ok
+        # rgb(227, 195, 160) 0 - light - ok 
+        if (rgb == (213, 184, 154) or rgb == (227, 195, 160)):
+            self.set_properties(0)
+
+    # check is there number on grid
+    def check_piece_number(self, rgb):
         # rgb(44, 115, 208) 1 (blue) - ok
         # rgb(65, 144, 61) 2 (green) - ok
         # rgb(205, 44, 54) 3 (red) - ok
         # rgb(120, 14, 161) 4 (purple) - ok
         # rgb(249, 144, 33) 5 (orange) - ok
         # rgb(59, 155, 162) 6 (cyan) - cannot find :(
-        # rgb(213, 184, 154) 0 - dark - ok
-        # rgb(227, 195, 160) 0 - light - ok
-        # rgb(165, 211, 76) covered - dark - ok
-        # rgb(172, 217, 84) covered - light - ok
-        pass
+        if (rgb == (44, 115, 208)):
+            self.set_properties(1)
+            return True
+        elif (rgb == (65, 144, 61)):
+            self.set_properties(2)
+            return True
+        elif (rgb == (205, 44, 54)):
+            self.set_properties(3)
+            return True
+        elif (rgb == (120, 14, 161)):
+            self.set_properties(4)
+            return True
+        elif (rgb == (249, 144, 33)):
+            self.set_properties(5)
+            return True
+        elif (rgb == (59, 155, 162)): # not confirm
+            self.set_properties(6)
+            return True
+        return False
+    
+    def set_properties(self, value):
+        self.set_clicked(True)
+        self.set_has_bomb(False)
+        self.set_bomb_number(value)
+

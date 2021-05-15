@@ -75,7 +75,7 @@ class AI():
         image = self.screenshot_game()
         for row in self.board.get_board():
             for col in row:
-                col.configure_piece(image)
+                col.search_piece(image)
 
     def find_possible_moves(self):
         pass
