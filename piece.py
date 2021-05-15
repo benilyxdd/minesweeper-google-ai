@@ -47,4 +47,5 @@ class Piece():
         self.bomb_number = value
 
     # methods
-    
+    def scan_piece(self):
+        pass
