@@ -71,7 +71,6 @@ class Piece():
             r, g, b = image.getpixel((self.get_piece_center_position()[0] + search_array_x[check],
                                     self.get_piece_center_position()[1] + search_array_y[check]))
             if (self.check_piece_number((r, g, b))):
-                # print(self.get_bomb_number(), self.get_piece_position())
                 return
         self.check_clicked(image.getpixel((self.get_piece_center_position()[0],
                                         self.get_piece_center_position()[1])))

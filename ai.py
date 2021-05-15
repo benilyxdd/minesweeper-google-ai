@@ -45,7 +45,7 @@ class AI():
         self.process()
         
         while not self.game_finish() and not self.get_finished(): 
-            time.sleep(1)
+            time.sleep(1.5)
             self.find_all()
             if (not self.has_possible_moves() and not self.get_finished()):
                 print("That's all my power")
@@ -92,7 +92,6 @@ class AI():
 
     def find_possible_moves(self):
         self.extend_possible_moves(self.get_board().find_possible_moves())
-        # print(self.get_possible_moves())
 
     def click_all_possible_moves(self):
         for x, y in self.possible_moves:
