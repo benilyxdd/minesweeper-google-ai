@@ -78,7 +78,7 @@ class AI():
         return True
 
     def has_possible_moves(self):
-        return self.get_possible_moves() # whether the array has element
+        return (len(self.get_possible_moves()) != 0) # whether the array has element
 
     def click_event(self, board_position, key):
         pyautogui.click(board_position[0] + self.get_board().get_piece_length() / 2,
