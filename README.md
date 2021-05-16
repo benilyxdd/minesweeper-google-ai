@@ -1,7 +1,6 @@
 # minesweeper-google-ai
 https://www.google.com/fbx?fbx=minesweeper
 
-set your own starting position for your screen
-and run main.py
+![Alt Text](https://github.com/benilyxdd/minesweeper-google-ai/blob/main/demo/video.gif)
 <br>
 not perfect, hard mode pixel's cannot be detected
